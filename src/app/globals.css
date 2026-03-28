@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", sans-serif;
+  --color-primary: #1a365d;
+  --color-secondary: #2c5282;
+  --color-accent: #4299e1;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #1e40af;
+  --secondary: #6366f1;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --bg-light: #f9fafb;
+}
+
+@layer base {
+  body {
+    @apply text-base text-gray-800 bg-white font-sans antialiased;
+    background: var(--background);
+    color: var(--foreground);
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body, html {
+    @apply overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-gray-900;
+  }
+
+  h1 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
+  }
+
+  h2 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-snug;
+  }
+
+  h3 {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
+
+  p {
+    @apply text-gray-700 leading-relaxed text-sm sm:text-base;
+  }
+
+  a {
+    @apply text-blue-700 transition duration-200;
+  }
+
+  input, textarea, select {
+    color: #000 !important;
+    background-color: #fff;
+    @apply text-base;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: #4b5563 !important;
+  }
+}
+
+.no-pointer {
+  pointer-events: none !important;
+}
+
+.clickable {
+  pointer-events: auto !important;
+}
+
+.hover-stable {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.btn-primary {
+  @apply bg-blue-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md hover:bg-blue-800 transition text-sm sm:text-base;
+}
+
+.btn-secondary {
+  @apply bg-indigo-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md hover:bg-indigo-600 transition text-sm sm:text-base;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section {
+  @apply py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8;
+}
+
+@media (max-width: 640px) {
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #000 !important;
+  box-shadow: 0 0 0px 1000px #ffffff inset;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+}

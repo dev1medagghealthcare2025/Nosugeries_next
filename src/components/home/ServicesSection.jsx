@@ -1,0 +1,324 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const allServices = {
+  set1: [
+    {
+      title: 'Geniculate Artery Embolization',
+      desc: 'A non-surgical solution to relieve chronic knee pain safely.',
+      img: '/Geniculate%20Artery%20Emblization.jpg',
+      icon: '/Geniculate Artery Emblization.jpg',
+      path: '/genicular-artery-embolization-gae',
+    },
+    {
+      title: 'Prostate Artery Embolization',
+      desc: 'Minimally invasive relief for Prostate without surgery.',
+      img: '/Prostate%20Artery%20Embolization.jpg',
+      icon: '/Prostate Artery Embolization.jpg',
+      path: '/prostate-artery-embolization-pae',
+    },
+    {
+      title: 'Fallopian Tube Recanalization',
+      desc: 'Non-surgical treatment to unblock fallopian tubes.',
+      img: '/Fallopian%20Tube%20Recanalization.jpg',
+      icon: '/Fallopian Tube Recanalization.jpg',
+      path: '/fallopian-tube-recanalization-ftr',
+    },
+    {
+      title: 'Varicocele Embolization',
+      desc: 'Minimally invasive relief for varicocele without surgery.',
+      img: '/Varicocele%20Embolization.jpg',
+      icon: '/Varicocele Embolization.jpg',
+      path: '/varicocele-embolization',
+    },
+    {
+      title: 'Thyroid Nodule Ablation',
+      desc: 'Minimally invasive treatment for thyroid nodules.',
+      img: '/Thyroid%20Nodul%20Ablation.jpg',
+      icon: '/Thyroid Nodul Ablation.jpg',
+      path: '/thyroid-nodule-ablation',
+    },
+    {
+      title: 'Uterine Fibroid Embolization',
+      desc: 'A non-surgical procedure to shrink fibroids and relieve symptoms.',
+      img: '/Uterine%20Fibroid%20Embolization.jpg',
+      icon: '/Uterine Fibroid Embolization.jpg',
+      path: '/uterine-artery-embolization-uae',
+    },
+    {
+      title: 'Varicose Veins',
+      desc: 'Non-surgical treatment for varicose veins.',
+      img: '/Varicose%20Veins.jpg',
+      icon: '/Varicose Veins.jpg',
+      path: '/varicose-vein',
+    },
+    {
+      title: 'Transcatheter Aortic Valve Replacement',
+      desc: 'Non-surgical aortic valve replacement for better heart function.',
+      img: '/Transcatheter%20Aortic%20Valve%20Replacement.jpg',
+      icon: '/Transcatheter Aortic Valve Replacement.jpg',
+      path: '/transcatheter-aortic-valve-replacement',
+    },
+  ],
+  set2: [
+    {
+      title: 'Chronic Total Occlusion',
+      desc: 'Minimally invasive reopening of permanently blocked coronary arteries to restore blood flow and improve heart function.',
+      img: '/chronic.svg',
+      icon: '/chronic.svg',
+      path: '/cto',
+    },
+    {
+      title: 'Radiofrequency Ablation for Arrhythmia',
+      desc: 'A minimally invasive procedure using heat energy to correct irregular heart rhythms—fast, safe relief without open-heart surgery.',
+      img: '/rfa for Ar.svg',
+      icon: '/rfa for Ar.svg',
+      path: '/rfa',
+    },
+    {
+      title: 'Endovascular coiling',
+      desc: 'Minimally invasive, image-guided treatment to secure brain aneurysms without open surgery.',
+      img: '/Endovascular coiling.svg',
+      icon: '/Endovascular coiling.svg',
+      path: '/endovascular-coiling',
+    },
+    {
+      title: 'Radiofrequency ablation for AVM',
+      desc: 'Minimally invasive treatment to close off or shrink abnormal blood vessel tangles, reducing the risk of haemorrhage and neurological effects.',
+      img: 'avm.svg',
+      icon: 'avm.svg',
+      path: '/radiofrequency-ablation-for-avm',
+    },
+    {
+      title: 'Plantar Fascial Embolization',
+      desc: 'Plantar fasciitis occurs when the thick tissue along the bottom of the foot becomes inflamed. Treatment involves injecting tiny particles to reduce blood flow, easing inflammation and relieving pain.',
+      img: '/planter_icon.jpg',
+      icon: '/planter_icon.jpg',
+      path: '/plantar-fascial-embolization',
+    },
+    {
+      title: 'Breast Nodule (VAE)',
+      desc: 'A non-surgical technique for the removal of benign breast nodules, leaving minimal to no scarring.',
+      img: '/Breast_nodule_icon.svg',
+      icon: '/Breast_nodule_icon.svg',
+      path: '/breast-nodule-vae',
+    },
+    {
+      title: 'Diabetic Foot',
+      desc: 'Minimally invasive care to improve blood flow and support limb salvage.',
+      img: '/diabetic footer.png',
+      icon: '/diabetic footer.png',
+      path: '/diabetic-foot',
+    },
+
+    {
+      title: 'Frozen Shoulder',
+      desc: 'A breakthrough non-surgical option to relieve frozen shoulder pain and stiffness.',
+      img: '/frozen shouder.png',
+      icon: '/frozen shouder.png',
+      path: '/frozen-shoulder',
+    },
+  ],
+  set3: [
+    {
+      title: 'Hemorrhoidal/Piles',
+      desc: 'Rectal Artery Embolization (also called Hemorrhoidal Artery Embolization) is an advanced, minimally invasive procedure that treats hemorrhoids at the source — by reducing the excess blood flow causing swelling and bleeding — without surgery.',
+      img: '/Hemorrhoidal_icon.png',
+      icon: '/Hemorrhoidal_icon.png',
+      path: '/hemorrhoidal',
+    },
+    {
+      title: 'Y-90 Radioembolization ',
+      desc: 'A minimally invasive treatment that delivers targeted radiation directly to liver tumors while preserving healthy liver tissue.',
+      img: '/Y-90 Radioembolization_1.png',
+      icon: '/Y-90 Radioembolization_1.png',
+      path: '/y90-radioembolization-tare',
+    },
+  ],
+};
+
+const ArrowButton = ({ highlight }) => (
+  <button
+    className={'w-9 h-9 flex items-center justify-center rounded-full focus:outline-none mt-2 bg-white text-[#1a1446] border border-gray-200 shadow-md hover:bg-[#ff3576] hover:text-white hover:border-[#ff3576] transition-colors duration-300'}
+  >
+    <svg width='20' height='20' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+      <circle cx='12' cy='12' r='10' fill='none' />
+      <path d='M10 8l4 4-4 4' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+    </svg>
+  </button>
+);
+
+const OurServiceSection = () => {
+  const navigate = useNavigate();
+  const [activeSet, setActiveSet] = useState('set1');
+  const intervalRef = useRef(null);
+
+  const services = allServices[activeSet];
+  const allMobileServices = React.useMemo(() => ([...allServices.set1, ...allServices.set2, ...allServices.set3]), []);
+  const [mobilePage, setMobilePage] = useState(0);
+  const mobilePages = React.useMemo(() => {
+    const chunkSize = 8; // 8 per page like the reference (2 rows x 4 or 4 rows x 2)
+    const chunks = [];
+    for (let i = 0; i < allMobileServices.length; i += chunkSize) {
+      chunks.push(allMobileServices.slice(i, i + chunkSize));
+    }
+    return chunks;
+  }, [allMobileServices]);
+  const displayedMobile = mobilePages[mobilePage] || [];
+
+  const handleCardClick = (path) => {
+    if (path) {
+      navigate(path);
+    }
+  };
+
+  // Auto-rotation effect
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setActiveSet((prevSet) => {
+        if (prevSet === 'set1') return 'set2';
+        if (prevSet === 'set2') return 'set3';
+        return 'set1';
+      });
+    }, 15000); // 15 seconds
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section id='services' className='w-full bg-white'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 flex flex-col items-center sm:items-start relative'>
+        <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1a1446] mb-3 sm:mb-4 text-center sm:text-left'>
+          Say Goodbye to <span className='text-[#ff3576]'>Surgery</span>
+        </h2>
+        <p className='text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 text-center sm:text-left max-w-2xl'>
+          Explore Safer, Scar-Free Treatments
+        </p>
+
+        {/* Left Arrow - show when not on set1 */}
+        {activeSet !== 'set1' && (
+          <button
+            onClick={() =>
+              setActiveSet((prev) => {
+                if (prev === 'set2') return 'set1';
+                if (prev === 'set3') return 'set2';
+                return 'set1';
+              })
+            }
+            className='absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#1a1446] border border-gray-200 shadow-lg hover:bg-[#ff3576] hover:text-white hover:border-[#ff3576] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff3576] focus:ring-offset-2 z-10'
+            aria-label='Show first set of services'
+          >
+            <svg width='24' height='24' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+              <path d='M14 8l-4 4 4 4' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+            </svg>
+          </button>
+        )}
+
+        {/* Mobile Icon Grid (paginated) */}
+        <div className='md:hidden w-full'>
+          <div className='grid grid-cols-2 gap-5'>
+            {displayedMobile.map((service) => (
+              <div
+                key={service.path}
+                role='button'
+                onClick={() => handleCardClick(service.path)}
+                className='flex flex-col items-center text-center cursor-pointer group'
+              >
+                <div
+                  className={`w-20 h-20 ${service.title === 'Diabetic Foot' ? 'p-1' : 'p-3'} rounded-2xl bg-white shadow-md flex items-center justify-center ring-1 ring-gray-100 group-hover:shadow-lg group-hover:ring-pink-200 transition-all`}
+                >
+                  <img src={service.icon} alt={`${service.title} icon`} className='w-full h-full object-contain' />
+                </div>
+                <p className='text-[13px] font-semibold mt-2 text-[#1a1446] group-hover:text-pink-600 transition-colors leading-snug'>
+                  {service.title}
+                </p>
+              </div>
+            ))}
+          </div>
+          {/* Mobile Pager Controls */}
+          {mobilePages.length > 1 && (
+            <div className='flex items-center justify-center gap-4 mt-5'>
+              <button
+                onClick={() => setMobilePage((p) => (p - 1 + mobilePages.length) % mobilePages.length)}
+                className='w-10 h-10 flex items-center justify-center rounded-full bg-white text-[#1a1446] border border-gray-200 shadow-md hover:bg-[#ff3576] hover:text-white hover:border-[#ff3576] transition-colors'
+                aria-label='Previous services'
+              >
+                <svg width='20' height='20' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+                  <path d='M14 8l-4 4 4 4' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+                </svg>
+              </button>
+              <button
+                onClick={() => setMobilePage((p) => (p + 1) % mobilePages.length)}
+                className='w-10 h-10 flex items-center justify-center rounded-full bg-white text-[#1a1446] border border-gray-200 shadow-md hover:bg-[#ff3576] hover:text-white hover:border-[#ff3576] transition-colors'
+                aria-label='Next services'
+              >
+                <svg width='20' height='20' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+                  <path d='M10 8l4 4-4 4' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+                </svg>
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Service Cards */}
+        <div className='hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full'>
+          {services.map((t, idx) => (
+            <div
+              key={t.title}
+              role='button'
+              tabIndex={0}
+              className='bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:bg-pink-50 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-[#ff3576] focus:ring-offset-2 cursor-pointer h-full border-2 border-transparent'
+              onClick={() => handleCardClick(t.path)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleCardClick(t.path);
+                }
+              }}
+              aria-label={`${t.title}. ${t.desc} Click to ${t.path ? 'learn more' : 'view details'}`}
+            >
+              <div className='flex-1'>
+                <h3 className='text-base font-bold text-[#1a1446] mb-2 leading-tight'>{t.title}</h3>
+                <p className='text-gray-400 text-sm mb-3 leading-relaxed line-clamp-4'>{t.desc}</p>
+              </div>
+              <div className='flex items-center justify-between mt-auto pt-2'>
+                <ArrowButton highlight={!!t.highlight} />
+                <img
+                  src={t.img}
+                  alt=''
+                  className={`${t.title === 'Diabetic Foot' ? 'w-16 h-16' : 'w-12 h-12'} object-contain flex-shrink-0`}
+                  aria-hidden='true'
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Right Arrow - show when not on last set */}
+        {activeSet !== 'set3' && (
+          <button
+            onClick={() =>
+              setActiveSet((prev) => {
+                if (prev === 'set1') return 'set2';
+                if (prev === 'set2') return 'set3';
+                return 'set3';
+              })
+            }
+            className='absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#1a1446] border border-gray-200 shadow-lg hover:bg-[#ff3576] hover:text-white hover:border-[#ff3576] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff3576] focus:ring-offset-2 z-10'
+            aria-label='Show second set of services'
+          >
+            <svg width='24' height='24' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+              <path d='M10 8l4 4-4 4' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+            </svg>
+          </button>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default OurServiceSection;

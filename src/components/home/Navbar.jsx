@@ -1,0 +1,142 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+    return () => document.body.classList.remove('overflow-hidden');
+  }, [isMenuOpen]);
+
+  return (
+    <nav className='w-full bg-[#392C5C] sticky top-0 z-50'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0'>
+        <div className='flex items-center justify-between h-[100px] lg:h-[110px]'>
+          {/* Logo */}
+          <div className='min-w-0'>
+            <Link href='/' className='flex items-center -ml-2 max-w-[520px] xl:max-w-[600px]'>
+              <div className='h-[100px] lg:h-[110px] flex items-center'>
+                <img
+                  src='/new_part2.png'
+                  alt='Medagg Healthcare'
+                  className='block h-[94px] sm:h-[98px] lg:h-[104px] w-auto max-w-full object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]'
+                  loading='eager'
+                  decoding='async'
+                />
+              </div>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation: only show at lg and above to avoid tablet crowding */}
+          <div className='hidden lg:block'>
+            <ul className='flex items-center space-x-4 xl:space-x-5'>
+              <li><Link href='/about' className='text-white hover:text-pink-400 transition-colors text-base font-semibold'>About</Link></li>
+              <li><Link href='/blog' className='text-white hover:text-pink-400 transition-colors text-base font-semibold'>Blogs</Link></li>
+              <li><Link href='/contact-us' className='text-white hover:text-pink-400 transition-colors text-base font-semibold'>Contact Us</Link></li>
+            </ul>
+          </div>
+
+          {/* Desktop Actions: only show at lg and above to avoid tablet crowding */}
+          <div className='hidden lg:flex items-center gap-2'>
+            {/* Phone Icon with Number */}
+            <a href='tel:+919363656010' className='flex items-center gap-1.5 lg:gap-2 hover:opacity-90 transition-opacity h-10'>
+              <div className='bg-pink-500 rounded-full w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center hover:bg-pink-600 transition-colors'>
+                <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5 text-white' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
+                  <path strokeLinecap='round' strokeLinejoin='round' d='M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515l.3 1.2a2 2 0 01-.45 1.95l-.7.7a16.001 16.001 0 006.36 6.36l.7-.7a2 2 0 011.95-.45l1.2.3A2 2 0 0121 16.72V19a2 2 0 01-2 2h-1C7.82 21 3 16.18 3 10V5z' />
+                </svg>
+              </div>
+              <span className='hidden lg:inline text-white font-semibold text-sm xl:text-base leading-none'>+91 93636 56010</span>
+            </a>
+            {/* Buttons */}
+            <Link href='/join-with-us' className='hover-stable hidden lg:flex h-10 px-1.5 border-2 border-pink-400 text-white text-sm rounded-lg font-normal hover:bg-pink-400 transition-colors items-center justify-center whitespace-nowrap leading-none shrink-0'>Partner With Us</Link>
+            <Link href='/investor' className='hover-stable hidden lg:flex h-10 px-2 border-2 border-pink-400 text-white text-sm rounded-lg font-normal hover:bg-pink-400 transition-colors items-center justify-center whitespace-nowrap leading-none shrink-0'>Become an Investor</Link>
+            <Link href='/contact-us' className='hover-stable h-9 lg:h-10 px-1.5 xl:px-2 bg-pink-500 text-white text-sm rounded-lg font-normal hover:bg-pink-600 transition-colors flex items-center justify-center whitespace-nowrap leading-none shrink-0'>Book Appointment</Link>
+
+            {/* ISVIR Logo and Label (Desktop only) */}
+            <div className='hidden lg:flex items-center h-10 pl-2 ml-0.5 border-l border-white/10'>
+              <img
+                src='/New_ISVIR_LOGO.png'
+                alt='ISVIR logo'
+                className='h-14 xl:h-15 w-auto opacity-90'
+              />
+              <div className='ml-1.5 leading-tight'>
+
+                <div className='text-white/80 text-[11px]'>
+                Corporate Member of ISVIR
+                  <br />
+                  Interventional Radiology
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile ISVIR logo + menu (visible below lg) */}
+          <div className='flex items-center gap-2 lg:hidden'>
+            {/* ISVIR Logo (mobile only) */}
+            <img
+              src='/New_ISVIR_LOGO.png'
+              alt='ISVIR logo'
+              className='h-10 w-auto opacity-90'
+            />
+            {/* ISVIR caption (mobile only) */}
+            <div className='leading-tight'>
+              <div className='text-white/80 text-[10px] font-medium'>
+                Corporate Member of ISVIR
+              </div>
+              <div className='text-white/80 text-[10px]'>
+                Interventional Radiology
+              </div>
+            </div>
+            <button
+              onClick={toggleMenu}
+              className='text-white hover:text-pink-400 transition-colors p-2'
+              aria-label='Toggle menu'
+              aria-expanded={isMenuOpen}
+              aria-controls='mobile-menu'
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Backdrop and Navigation Menu (below lg) */}
+        {isMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <div
+              className='fixed inset-0 bg-black/40 backdrop-blur-[1px] z-40 lg:hidden'
+              onClick={toggleMenu}
+            />
+            {/* Menu Panel */}
+            <div id='mobile-menu' className='lg:hidden fixed top-[100px] lg:top-[110px] left-0 right-0 z-50 animate-slide-down'>
+              <div className='px-2 pt-2 pb-3 space-y-1 bg-[#392C5C] border-t border-pink-400/20 shadow-xl'>
+                <Link href='/about' onClick={() => setIsMenuOpen(false)} className='block px-3 py-2 text-white hover:text-pink-400 transition-colors text-base font-semibold'>About</Link>
+                <Link href='/blog' onClick={() => setIsMenuOpen(false)} className='block px-3 py-2 text-white hover:text-pink-400 transition-colors text-base font-semibold'>Blog</Link>
+                <Link href='/contact-us' onClick={() => setIsMenuOpen(false)} className='block px-3 py-2 text-white hover:text-pink-400 transition-colors text-base font-semibold'>Contact Us</Link>
+
+                {/* Mobile Actions */}
+                <div className='pt-4 space-y-2'>
+                  <Link href='/join-with-us' onClick={() => setIsMenuOpen(false)} className='hover-stable block w-full px-3 py-2 border-2 border-pink-400 text-white text-center rounded-lg font-normal hover:bg-pink-400 transition-colors'>Partner With Us</Link>
+                  <Link href='/investor' onClick={() => setIsMenuOpen(false)} className='hover-stable block w-full px-3 py-2 border-2 border-pink-400 text-white text-center rounded-lg font-normal hover:bg-pink-400 transition-colors'>Become an Investor</Link>
+                  <Link href='/contact-us' onClick={() => setIsMenuOpen(false)} className='hover-stable block w-full px-3 py-2 bg-pink-500 text-white text-center rounded-lg font-normal hover:bg-pink-600 transition-colors'>Book Appointment</Link>
+                  <a href='tel:+919363656010' onClick={() => setIsMenuOpen(false)} className='hover-stable block w-full px-3 py-2 bg-pink-500 text-white text-center rounded-lg font-normal hover:bg-pink-600 transition-colors'>📞 Call Now</a>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </nav>
+  );
+}
