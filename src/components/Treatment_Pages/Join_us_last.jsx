@@ -1,7 +1,7 @@
 import { motion, animate } from "framer-motion";
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 function AnimatedNumber({ value }) {
   const ref = useRef(null);
@@ -49,7 +49,7 @@ function AnimatedNumber({ value }) {
 }
 
 function CTAContent() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -79,7 +79,7 @@ function CTAContent() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {

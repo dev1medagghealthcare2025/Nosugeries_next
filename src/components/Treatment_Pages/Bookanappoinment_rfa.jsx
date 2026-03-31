@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Bookanappoinment_rfa = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const Bookanappoinment_rfa = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -79,7 +79,7 @@ const Bookanappoinment_rfa = () => {
                   Book your consultation today and explore a safer alternative to bypass surgery.
                 </p>
                 <div className='mt-4'>
-                  <Link to='/contact-us'>
+                  <Link href='/contact-us'>
                     <button className='w-full sm:w-auto bg-[#ff3576] text-white font-bold py-2 px-6 rounded-lg text-base hover:bg-pink-700 transition-all duration-300 shadow-lg'>
                       Book Appointment
                     </button>

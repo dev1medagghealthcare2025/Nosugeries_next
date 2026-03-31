@@ -1,10 +1,13 @@
+'use client';
+
 import React, { useState, useEffect, useDeferredValue, useTransition } from 'react';
 import Hero_crossel from './Hero_crossel';
 import HeroCrosselMap from './Hero_crossel_map';
 import SharedSearchBar from './SharedSearchBar';
 import MobileHeroSection from './MobileHeroSection';
 import FloatingBadgeCTA from './FloatingBadgeCTA';
-import curatedData from '../../data/treatment_keywords.json';
+
+const curatedData = [];
 
 // Memoized, non-search slides to avoid re-rendering while typing
 const MemoHeroCrossel = React.memo(Hero_crossel);

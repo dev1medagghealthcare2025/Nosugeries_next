@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const BookAppointmentFrozen = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +53,7 @@ const BookAppointmentFrozen = () => {
               <p className="mt-4 text-gray-200">
                 Talk to our interventional radiologists and find out if ACE is right for you.
               </p>
-              <Link to="/contact-us">
+              <Link href="`/contact-us">
                 <button className="mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-lg transition-colors">
                   Book Appointment
                 </button>

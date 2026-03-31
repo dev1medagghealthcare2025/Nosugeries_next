@@ -1,5 +1,6 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Globe } from 'lucide-react';
 
 const FTE_HeroSection = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ const FTE_HeroSection = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {

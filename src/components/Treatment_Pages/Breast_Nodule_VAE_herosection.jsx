@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Globe } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const BreastNoduleVAEHeroSection = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ const BreastNoduleVAEHeroSection = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {

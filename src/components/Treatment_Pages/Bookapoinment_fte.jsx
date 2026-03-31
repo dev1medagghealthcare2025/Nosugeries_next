@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const BookAppointmentFTE = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const BookAppointmentFTE = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -75,7 +76,7 @@ const BookAppointmentFTE = () => {
               <p className='mt-4 text-lg text-gray-300'>
                 You don’t need IVF first—non-surgical restoration may be effective.
               </p>
-              <Link to='/contact-us'>
+              <Link href='/contact-us'>
                 <button className='mt-8 bg-[#ff3576] text-white font-bold py-3 px-8 rounded-lg hover:bg-pink-700 transition duration-300'>
                   Book Appointment
                 </button>

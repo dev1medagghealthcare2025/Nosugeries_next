@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const VV_BookAnAppointment = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const VV_BookAnAppointment = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -74,7 +74,7 @@ const VV_BookAnAppointment = () => {
               <p className='mt-4 text-base text-gray-200 leading-relaxed'>
                 Endovenous ablation offers fast relief without major surgery
               </p>
-              <Link to='/contact-us'>
+              <Link href='/contact-us'>
                 <button className='mt-6 bg-[#ff3576] text-white font-bold py-2 px-6 rounded-lg hover:bg-pink-700 transition duration-300 text-sm'>
                   Book Appointment
                 </button>

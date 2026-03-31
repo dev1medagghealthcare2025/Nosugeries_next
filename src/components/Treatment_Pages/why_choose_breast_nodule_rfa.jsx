@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Scissors, Clock, TrendingUp, AlertCircle } from 'lucide-react';
 
 const WhyChooseBreastNoduleRFA = () => {
@@ -32,13 +32,13 @@ const WhyChooseBreastNoduleRFA = () => {
         {/* Treatment Toggles */}
         <div className='flex justify-center items-center mb-12'>
           <div className='flex flex-wrap gap-2 md:gap-4 p-1.5 bg-gray-100 rounded-full'>
-            <Link to='/breast-nodule-vae' className='px-4 py-2 text-sm md:text-base font-medium text-gray-600 rounded-full hover:bg-pink-100 hover:text-[#ff3576] transition'>
+            <Link href='/breast-nodule-vae' className='px-4 py-2 text-sm md:text-base font-medium text-gray-600 rounded-full hover:bg-pink-100 hover:text-[#ff3576] transition'>
               Vacuum-Assisted Excision
             </Link>
-            <Link to='/breast-nodule-cryoablation' className='px-4 py-2 text-sm md:text-base font-medium text-gray-600 rounded-full hover:bg-pink-100 hover:text-[#ff3576] transition'>
+            <Link href='/breast-nodule-cryoablation' className='px-4 py-2 text-sm md:text-base font-medium text-gray-600 rounded-full hover:bg-pink-100 hover:text-[#ff3576] transition'>
               Cryoablation
             </Link>
-            <Link to='/breast-nodule-rfa' className='px-4 py-2 text-sm md:text-base font-medium text-white bg-[#ff3576] rounded-full shadow-md hover:bg-[#ff3576] hover:text-white transition'>
+            <Link href='/breast-nodule-rfa' className='px-4 py-2 text-sm md:text-base font-medium text-white bg-[#ff3576] rounded-full shadow-md hover:bg-[#ff3576] hover:text-white transition'>
               Radiofrequency Ablation (RFA)
             </Link>
           </div>

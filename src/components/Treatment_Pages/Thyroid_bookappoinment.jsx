@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Thyroid_bookappoinment = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const Thyroid_bookappoinment = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -73,7 +73,7 @@ const Thyroid_bookappoinment = () => {
             <p className='text-base md:text-lg text-gray-200 max-w-md mx-auto md:mx-0'>
               Book your scan review and get expert advice from our IR specialists.
             </p>
-            <Link to='/contact-us'>
+            <Link href='/contact-us'>
               <button className='w-full sm:w-auto bg-[#ff3576] text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-pink-700 transition-colors shadow-lg'>
                 Book Appointment
               </button>

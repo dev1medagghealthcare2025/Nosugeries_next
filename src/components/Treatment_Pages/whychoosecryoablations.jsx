@@ -1,9 +1,9 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useRouter, usePathname } from 'next/navigation';
 import { Clock, TrendingUp, AlertCircle, Scissors } from 'lucide-react';
 
 const WhyChooseCryoablation = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const location = useLocation();
 
   const treatmentPaths = {
@@ -15,7 +15,7 @@ const WhyChooseCryoablation = () => {
   const handleNavigation = (option) => {
     const path = Object.keys(treatmentPaths).find(key => treatmentPaths[key] === option);
     if (path) {
-      navigate(path);
+      router.push(path);
     } else {
       console.log(`${option} page not yet implemented.`);
     }

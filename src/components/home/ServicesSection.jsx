@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const allServices = {
   set1: [
@@ -149,7 +151,7 @@ const ArrowButton = ({ highlight }) => (
 );
 
 const OurServiceSection = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [activeSet, setActiveSet] = useState('set1');
   const intervalRef = useRef(null);
 
@@ -168,7 +170,7 @@ const OurServiceSection = () => {
 
   const handleCardClick = (path) => {
     if (path) {
-      navigate(path);
+      router.push(path);
     }
   };
 

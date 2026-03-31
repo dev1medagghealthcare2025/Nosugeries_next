@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const BookAppointmentDiabetic = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     concern: '',
     city: '',
@@ -28,7 +28,7 @@ const BookAppointmentDiabetic = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -74,7 +74,7 @@ const BookAppointmentDiabetic = () => {
                 Talk to our interventional radiology team to find out if endovascular treatment is an option for you.
               </p>
               <button
-                onClick={() => navigate('/contact-us')}
+                onClick={() => router.push('/contact-us')}
                 className="mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Book Appointment

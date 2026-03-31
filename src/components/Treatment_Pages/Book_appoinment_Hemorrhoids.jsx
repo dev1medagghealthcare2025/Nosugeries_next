@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Book_appoinment_Hemorrhoids = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const Book_appoinment_Hemorrhoids = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -76,7 +76,7 @@ const Book_appoinment_Hemorrhoids = () => {
                 Embolization is right for you.
               </p>
               <div className='pt-2'>
-                <Link to='/contact-us'>
+                <Link href='/contact-us'>
                 <button className='bg-[#ff3576] text-white px-8 py-3 rounded-lg font-semibold hover:bg-pink-700 transition-colors duration-300 text-base sm:text-lg'>
                   Book Appointment
                 </button>

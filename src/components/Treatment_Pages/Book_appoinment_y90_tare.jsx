@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const BookAppointmentY90Tare = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const BookAppointmentY90Tare = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
           },
           body: JSON.stringify({
             fields: {
@@ -81,7 +81,7 @@ const BookAppointmentY90Tare = () => {
                 If you have abnormal liver imaging or symptoms related to liver disease, consulting a specialist can help determine the best treatment approach.
               </p>
 
-              <Link to='/contact-us'>
+              <Link href='/contact-us'>
                 <button className='mt-6 bg-[#ff3576] text-white font-bold py-2.5 px-7 rounded-lg hover:bg-pink-700 transition duration-300 text-sm'>
                   Book Appointment
                 </button>

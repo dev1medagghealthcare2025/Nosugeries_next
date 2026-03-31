@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Scissors, Clock, TrendingUp, HeartPulse } from 'lucide-react'; // Using HeartPulse as a proxy for fertility icon
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const BookappoinmentPlanter = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const BookappoinmentPlanter = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_TELECRM_API_KEY}`,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TELECRM_API_KEY}`,
         },
         body: JSON.stringify({
           fields: {
@@ -70,7 +70,7 @@ const BookappoinmentPlanter = () => {
               <p className='text-lg text-gray-200 max-w-lg mx-auto lg:mx-0'>
                 Book your consultation to review your case and see if you qualify for PFE.
               </p>
-              <Link to='/contact-us'>
+              <Link href='/contact-us'>
                 <button className='bg-[#ff3576] text-white px-8 py-3 rounded-lg font-semibold hover:bg-pink-700 transition-colors duration-300 text-lg'>
                   Book Appointment
                 </button>

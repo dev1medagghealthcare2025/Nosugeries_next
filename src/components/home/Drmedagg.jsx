@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import Link from 'next/link';
 
 const Drmedagg = () => {
-  const navigate = useNavigate();
   return (
     <section className='w-full bg-[#fff4fa]'>
       <div className='max-w-7xl mx-auto px-3 sm:px-4 py-12 flex flex-col md:flex-row items-center justify-start gap-8'>
@@ -28,12 +27,12 @@ const Drmedagg = () => {
           {/* Actions Group (search removed as requested) */}
           <div className='flex flex-col gap-3 w-full'>
             <div className='flex flex-row gap-3 w-full justify-start flex-nowrap max-[360px]:flex-wrap'>
-              <button onClick={() => navigate('/contact-us')} className='flex items-center gap-2 px-6 py-3 border-2 border-[#ff3576] text-[#ff3576] rounded-full font-bold text-base bg-white hover:bg-[#ff3576] hover:text-white transition-all whitespace-nowrap'>
+              <Link href='/contact-us' className='flex items-center gap-2 px-6 py-3 border-2 border-[#ff3576] text-[#ff3576] rounded-full font-bold text-base bg-white hover:bg-[#ff3576] hover:text-white transition-all whitespace-nowrap'>
                 <svg width='16' height='16' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
                   <path d='M5 12h14M12 5l7 7-7 7' strokeLinecap='round' strokeLinejoin='round' />
                 </svg>
                 Book Appointment
-              </button>
+              </Link>
               {/* <button className='flex items-center gap-2 px-6 py-3 border-2 border-[#ff3576] text-[#ff3576] rounded-full font-bold text-base bg-white hover:bg-[#ff3576] hover:text-white transition-all whitespace-nowrap'>
                 <svg width='16' height='16' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
                   <path d='M5 12h14M12 5l7 7-7 7' strokeLinecap='round' strokeLinejoin='round' />
