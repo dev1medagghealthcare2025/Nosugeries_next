@@ -1,4 +1,4 @@
 User-agent: *
-Allow: 
+Allow: /
 
-Sitemap: https://nosurgeries.in/sitemap.xml
+Sitemap: https://no-surgeries.com/sitemap.xml
