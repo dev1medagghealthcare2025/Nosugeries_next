@@ -4,7 +4,7 @@ import { Clock, TrendingUp, AlertCircle, Scissors } from 'lucide-react';
 
 const WhyChooseVAE = () => {
   const router = useRouter();
-  const location = useLocation();
+  const pathname = usePathname();
 
   const treatmentPaths = {
     '/breast-nodule-vae': 'Vacuum-Assisted Excision',
@@ -56,7 +56,7 @@ const WhyChooseVAE = () => {
                 key={option}
                 onClick={() => handleNavigation(option)}
                 className={`px-4 sm:px-6 py-2 m-1 text-sm sm:text-base font-medium rounded-full transition-colors duration-300 ${
-                  treatmentPaths[location.pathname] === option
+                  treatmentPaths[pathname] === option
                     ? 'bg-[#ff3576] text-white'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}

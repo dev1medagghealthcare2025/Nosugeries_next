@@ -22,10 +22,10 @@ export default function Navbar() {
   return (
     <nav className='w-full bg-[#392C5C] sticky top-0 z-50'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0'>
-        <div className='flex items-center justify-between h-[100px] lg:h-[110px]'>
+        <div className='flex items-center justify-between h-[100px] lg:h-[110px] min-w-0 overflow-hidden'>
           {/* Logo */}
           <div className='min-w-0'>
-            <Link href='/' className='flex items-center -ml-2 max-w-[520px] xl:max-w-[600px]'>
+            <Link href='/' className='flex items-center -ml-2 max-w-[200px] sm:max-w-[360px] md:max-w-[440px] xl:max-w-[600px] min-w-0'>
               <div className='h-[100px] lg:h-[110px] flex items-center'>
                 <img
                   src='/new_part2.png'
@@ -82,20 +82,21 @@ export default function Navbar() {
           </div>
 
           {/* Mobile ISVIR logo + menu (visible below lg) */}
-          <div className='flex items-center gap-2 lg:hidden'>
-            {/* ISVIR Logo (mobile only) */}
-            <img
-              src='/New_ISVIR_LOGO.png'
-              alt='ISVIR logo'
-              className='h-10 w-auto opacity-90'
-            />
-            {/* ISVIR caption (mobile only) */}
-            <div className='leading-tight'>
-              <div className='text-white/80 text-[10px] font-medium'>
-                Corporate Member of ISVIR
-              </div>
-              <div className='text-white/80 text-[10px]'>
-                Interventional Radiology
+          <div className='flex items-center gap-1.5 lg:hidden shrink-0'>
+            {/* ISVIR (hide on very small screens to prevent overflow) */}
+            <div className='hidden sm:flex items-center gap-1.5'>
+              <img
+                src='/New_ISVIR_LOGO.png'
+                alt='ISVIR logo'
+                className='h-10 w-auto opacity-90 object-contain'
+              />
+              <div className='leading-tight'>
+                <div className='text-white/80 text-[10px] font-medium'>
+                  Corporate Member of ISVIR
+                </div>
+                <div className='text-white/80 text-[10px]'>
+                  Interventional Radiology
+                </div>
               </div>
             </div>
             <button
