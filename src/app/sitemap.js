@@ -6,6 +6,11 @@ export default function sitemap() {
       priority: 1.0,
     },
     {
+      url: 'https://no-surgeries.com/contact-us',
+      lastModified: '2026-04-01T05:31:15+00:00',
+      priority: 0.8,
+    },
+    {
       url: 'https://no-surgeries.com/about',
       lastModified: '2026-04-01T05:31:15+00:00',
       priority: 0.8,
